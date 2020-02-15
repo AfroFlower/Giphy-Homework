@@ -3,28 +3,37 @@
 $(document).ready(function (){
 
     $("button").on("click", function(){
+        // the button that was clicked in the html
+        // var btn = $(this).attr("#animal-button");
 
         var myApiKey = "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv";
        
         var queryUrl = "http://api.giphy.com/v1/gifs/search?&q=" + animals +"&rating=&limit=10&lang=en" + myApiKey;
 
-        // Grabbing and storing the data-animal property value from the button
-        // var animal = $(this).attr("data-animal");
+        console.log(queryUrl);
 
         //array
         var animals = ["cats", "dogs", "birds"];
-
-        console.log(queryUrl);
 
         $.ajax({
             url: queryUrl,
             method: "GET"
         }).then(function(response) {
             console.log(response.data);
-            
-            
+
+            var imageUrl = response.data.images;
+            console.log(imageUrl);
+
+        
+            // //the image url
+            // var imageUrl = results;
+            // //create an image tag to be appended to the end
+            // var animalImg = $("<img>")
 
 
+
+            // After everything is done THEN Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
+            // $("#gifs-appear-here").prepend(gifDiv);
         });
     });
 

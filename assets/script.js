@@ -7,13 +7,27 @@ $(document).ready(function (){
     var limit = "&limit=";
     var rating = "&rating=";
 
-
     var queryUrl = "http://api.giphy.com/v1/gifs/search?" + myApiKey + query + limit + rating + "&lang=en";
 
-    console.log(queryUrl)
+    // console.log(queryUrl);
+
+    // var input = prompt("tpye something here");
+    
+    // (input).append(query);
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+
+        console.log(queryUrl);
+        // console.log(response);
+
+    });
 
 
-}
+
+});
 
 // giphy api key link: https://giphy.api-docs.io/1.0/welcome/access-and-api-keys
     // public beta key dc6zaTOxFJmzC

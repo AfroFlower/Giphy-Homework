@@ -15,25 +15,17 @@ $(document).ready(function (){
         //array
         var animals = ["cats", "dogs", "birds"];
 
+        //the .then fucntion calls the object (data) being called
         $.ajax({
             url: queryUrl,
             method: "GET"
         }).then(function(response) {
             console.log(response.data);
 
-            var imageUrl = response.data.images;
-            console.log(imageUrl);
-
-        
-            // //the image url
-            // var imageUrl = results;
-            // //create an image tag to be appended to the end
-            // var animalImg = $("<img>")
+            var results = response.data
+            console.log(results[2].images.original.url);
 
 
-
-            // After everything is done THEN Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
-            // $("#gifs-appear-here").prepend(gifDiv);
         });
     });
 

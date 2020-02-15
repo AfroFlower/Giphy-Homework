@@ -2,28 +2,24 @@
 
 $(document).ready(function (){
 
+    var url = "http://api.giphy.com/v1/gifs/search?";
     var myApiKey = "api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv";
-    var query = "&q=";
-    var limit = "&limit=";
-    var rating = "&rating=";
+    var query = "&q=cats";
+    var limit = "&limit=3";
+    var rating = "&rating=g";
 
-    var queryUrl = "http://api.giphy.com/v1/gifs/search?" + myApiKey + query + limit + rating + "&lang=en";
+    var queryUrl = url + myApiKey + query + limit + rating + "&lang=en";
 
-    // console.log(queryUrl);
-
-    // var input = prompt("tpye something here");
-    
-    // (input).append(query);
+    console.log(queryUrl);
 
     $.ajax({
-        url: queryURL,
+        url: queryUrl,
         method: "GET"
       }).then(function(response) {
+        console.log(response);
+        // notes for tomorrow: start creating calling content here
 
-        console.log(queryUrl);
-        // console.log(response);
-
-    });
+      });
 
 
 

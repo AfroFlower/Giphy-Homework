@@ -4,26 +4,27 @@ $(document).ready(function (){
 
     $("button").on("click", function(){
         // the button that was clicked in the html
-        // var btn = $(this).attr("#animal-button");
+        var btn = $(this).attr("button");
 
         var myApiKey = "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv";
        
         var queryUrl = "http://api.giphy.com/v1/gifs/search?&q=" + animals +"&rating=&limit=10&lang=en" + myApiKey;
 
-        console.log(queryUrl);
+        console.log(queryUrl)
 
-        //array
-        var animals = ["cats", "dogs", "birds"];
-
+        var animals = $("user-input")
+        
         //the .then fucntion calls the object (data) being called
         $.ajax({
             url: queryUrl,
             method: "GET"
         }).then(function(response) {
-            console.log(response.data);
+            // console.log(response.data);
 
             var results = response.data
-            console.log(results[2].images.original.url);
+            // console.log(results[2].images.original.url);
+
+            
 
 
         });

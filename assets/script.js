@@ -2,13 +2,13 @@
 
 $(document).ready(function (){
 
-    $("button").on("click", function(){
-        // the button that was clicked in the html
-        // var btn = $(this).attr("button");
-
-        var myApiKey = "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv";
-       
-        var queryUrl = "http://api.giphy.com/v1/gifs/search?&q=" + userInput +"&rating=&limit=10&lang=en" + myApiKey;
+    $("#catButton").on("click", function(){
+        
+        //first, create and api key
+        var myApiKey = "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv";        
+        var animal = "cat";
+        // locate the url for the api
+        var queryUrl = "http://api.giphy.com/v1/gifs/search?&q=" + animal + "&rating=&limit=10&lang=en" + myApiKey;
 
         console.log(queryUrl)
 
@@ -17,23 +17,23 @@ $(document).ready(function (){
             url: queryUrl,
             method: "GET"
         }).then(function(response) {
-            // console.log(response.data);
+            console.log(response.data[2].images.original.url);
 
-            var results = response.data
-            // console.log(results[2].images.original.url);
+            // // Saving the image_original_url property
+            // var imageUrl = response.data.image_original_url;
 
-            
+            // // Creating and storing an image tag
+            // var catImage = $("<img>");
 
-            
+            // // Setting the catImage src attribute to imageUrl
+            // catImage.attr("src", imageUrl);
+            // catImage.attr("alt", "animal image");
 
+            // // Prepending the catImage to the images div
+            // $("#images").prepend(catImage);
 
         });
     });
-
-    
-
-
-
 });
 
 // giphy api key link: https://giphy.api-docs.io/1.0/welcome/access-and-api-keys

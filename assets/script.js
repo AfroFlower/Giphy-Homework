@@ -4,33 +4,36 @@ $(document).ready(function (){
 
     $("#catButton").on("click", function(){
         
+        
         //first, create and api key
-        var myApiKey = "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv";        
-        var animal = "cat";
+        var myApiKey = "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv"; 
+        // the var object we will search for our input
+        var animal = "cat";       
         // locate the url for the api
-        var queryUrl = "http://api.giphy.com/v1/gifs/search?&q=" + animal + "&rating=&limit=10&lang=en" + myApiKey;
+        var queryUrl = "http://api.giphy.com/v1/gifs/random?&tag=" + animal + "&rating=&limit=10&lang=en" + myApiKey;
 
         console.log(queryUrl)
-
+        
         //the .then fucntion calls the object (data) being called
         $.ajax({
             url: queryUrl,
             method: "GET"
         }).then(function(response) {
-            console.log(response.data[2].images.original.url);
+            // console.log(response.data[2].images.original.url);
 
-            // // Saving the image_original_url property
-            // var imageUrl = response.data.image_original_url;
+            // Saving the image_original_url property
+            var imageUrl = response.data.images.original.url;
+            console.log(imageUrl)
 
-            // // Creating and storing an image tag
-            // var catImage = $("<img>");
+            // Creating and storing an image tag
+            var catImage = $("<img>");
 
-            // // Setting the catImage src attribute to imageUrl
-            // catImage.attr("src", imageUrl);
-            // catImage.attr("alt", "animal image");
+            // Setting the catImage src attribute to imageUrl
+            catImage.attr("src", imageUrl);
+            catImage.attr("alt", "cat image");
 
-            // // Prepending the catImage to the images div
-            // $("#images").prepend(catImage);
+            // Prepending the catImage to the images div
+            $("#gifs-here").prepend(catImage);
 
         });
     });

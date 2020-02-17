@@ -10,7 +10,7 @@ $(document).ready(function (){
         
         console.log(queryURL)
         console.log(animal)
-
+        
         //the .then fucntion calls the object (data) being called
         $.ajax({
             url: queryURL,
@@ -22,8 +22,12 @@ $(document).ready(function (){
             var results = response.data;
             // console.log(results)
 
+
                 // Looping over every result item (the results are in an object array from it's api data file)
                 for (var i = 0; i < results.length; i++) {
+
+                var dataStill = results[i].images.fixed_height_still.url;
+                console.log(dataStill)
 
                 // Only taking action if the photo has an appropriate rating
                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
@@ -53,6 +57,22 @@ $(document).ready(function (){
             };
 
         });
+
+        $(".gif").on("click", function() {
+            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+            
+            var state = $(this).attr("data-state");
+            // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+            // Then, set the image's data-state to animate
+            // Else set src to the data-still value
+            if (state === "still") {
+              $(this).attr("src", $(this).attr("data-animate"));
+              $(this).attr("data-state", "animate");
+            } else {
+              $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("data-state", "still");
+            }
+          });
     });
 
 });

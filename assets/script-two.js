@@ -25,28 +25,39 @@ $(document).ready(function (){
             // Creating a div for the gif
             var gifDiv = $("<div class='animals'>");
 
-            // Storing the result item's rating
-            var rating = results.rating;
+            // // Storing the result item's rating
+            // var rating = results[i].rating;
 
-            // Creating a paragraph tag with the result item's rating
-            var p = $("<p>").text("Rating: " + rating);
+            // // Creating a paragraph tag with the result item's rating
+            // var p = $("<p>").text("Rating: " + rating);
 
             // Displaying the rating
             gifDiv.append(p);
+            
+            for (var i = 0; i < topics.length; i++){
 
+            // Storing the result item's rating
+            var rating = results[i].rating;
+
+            // Creating a paragraph tag with the result item's rating
+            var p = $("<p>").text("Rating: " + rating);
             // Creating an image tag
             var animalImage = $("<img>");
 
             // Giving the image tag an src attribute of a proprty pulled off the
             // result item
-            animalImage.attr("src", results[i].images.fixed_height.url);
+            animalImage.attr("src", results[i].images.original.url);
+            // console.log(animalImage)
 
             // Appending the paragraph and personImage we created to the "gifDiv" div we created
             gifDiv.append(p);
             gifDiv.append(animalImage);
 
             // Putting the entire movie above the previous movies
-            $("#gifs-view").prepend(animalDiv);
+            $("#gifs-view").prepend(gifDiv);
+
+            };
+            
         });
     };
 

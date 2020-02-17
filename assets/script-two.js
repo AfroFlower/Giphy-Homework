@@ -16,21 +16,35 @@ $(document).ready(function (){
             url: queryUrl,
             method: "GET"
         }).then(function(response) {
-            // console.log(response.data[2].images.original.url);
+            console.log(response.data);
+            // Creating a div for the gif
+            var gifDiv = $("<div>");
 
-            // Saving the image_original_url property
-            var imageUrl = response.data.images.original.url;
-            console.log(imageUrl)
+            var results = response.data
+
+            // // // Storing the result item's rating
+            var rating = results.rating;
+
+            // // // Creating a paragraph tag with the result item's rating
+            var p = $("<p>").text("Rating: " + rating);
 
             // Creating and storing an image tag
             var catImage = $("<img>");
+
+            // Saving the image_original_url property
+            var imageUrl = results.images.original.url;
+            // console.log(imageUrl)
 
             // Setting the catImage src attribute to imageUrl
             catImage.attr("src", imageUrl);
             catImage.attr("alt", "cat image");
 
-            // Prepending the catImage to the images div
-            $("#gifs-here").prepend(catImage);
+            // Appending the paragraph and personImage we created to the "gifDiv" div we created
+            gifDiv.append(p);
+            gifDiv.append(catImage);
+
+            // Prepending the catImage to the gif div
+            $("#gifs-here").prepend(gifDiv);
 
         });
     });

@@ -1,52 +1,53 @@
 $(document).ready(function (){
-    // these elements are in the global scope, meaning everything can access them
-    var animalCat = "cat";  
+
+    var animals = ["cat", "dog", "bird", "mouse"];
+
+    // In this case, the "this" keyword refers to the button that was clicked
+    var animal = $(this).attr("data-animal");
+
+    // Constructing a URL to search Giphy for the name of the person who said the quote
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv&limit=10";
     
-    //first, create and api key
-    var myApiKey = "&api_key=BxNABNc8tOV3Dw1Tfz4EBoTbMNH9cBkv"; 
-    // locate the url for the api
-    var queryUrl = "http://api.giphy.com/v1/gifs/random?&tag=" + animalCat + "&rating=&limit=10&lang=en" + myApiKey;
+    console.log(queryURL)
+    console.log(animal)
 
-    console.log(queryUrl)
+    function displayGifs() {
 
-    $("#catButton").on("click", function(){
-                
-        //the .then fucntion calls the object (data) being called
+        // Creating an AJAX call for the specific movie button being clicked
         $.ajax({
-            url: queryUrl,
-            method: "GET"
+          url: queryURL,
+          method: "GET"
         }).then(function(response) {
-            console.log(response.data);
-            // Creating a div for the gif
-            var gifDiv = $("<div>");
 
-            var results = response.data
+            var results = response.data;
 
-            // // // Storing the result item's rating
+            // Creating a div to hold the movie
+            var animalDiv = $("<div class='animal'>");
+
+            // Storing the result item's rating
             var rating = results.rating;
 
-            // // // Creating a paragraph tag with the result item's rating
+            // Creating a paragraph tag with the result item's rating
             var p = $("<p>").text("Rating: " + rating);
 
-            // Creating and storing an image tag
-            var catImage = $("<img>");
+            // Displaying the rating
+            animalDiv.append(p);
 
-            // Saving the image_original_url property
-            var imageUrl = results.images.original.url;
-            // console.log(imageUrl)
+            // Creating an image tag
+            var animalImage = $("<img>");
 
-            // Setting the catImage src attribute to imageUrl
-            catImage.attr("src", imageUrl);
-            catImage.attr("alt", "cat image");
+            // Giving the image tag an src attribute of a proprty pulled off the
+            // result item
+            animalImage.attr("src", results[i].images.fixed_height.url);
 
             // Appending the paragraph and personImage we created to the "gifDiv" div we created
             gifDiv.append(p);
-            gifDiv.append(catImage);
+            gifDiv.append(animalImage);
 
-            // Prepending the catImage to the gif div
-            $("#gifs-here").prepend(gifDiv);
 
+          // Putting the entire movie above the previous movies
+          $("#gifs-view").prepend(animalDiv);
         });
-    });
 
+      }
 });

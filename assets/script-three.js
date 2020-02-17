@@ -22,11 +22,11 @@ $(document).ready(function (){
             var results = response.data;
             // console.log(results)
 
-                // Looping over every result item
+                // Looping over every result item (the results are in an object array from it's api data file)
                 for (var i = 0; i < results.length; i++) {
 
                 // Only taking action if the photo has an appropriate rating
-                if (results[i].rating !== "g" && results[i].rating !== "pg-13") {
+                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                     // Creating a div for the gif
                     var gifDiv = $("<div>");
 
